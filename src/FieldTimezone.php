@@ -2,7 +2,17 @@
 
 namespace Adaptcms\FieldTimezone;
 
+use Adaptcms\Base\Models\Package;
+
 class FieldTimezone
 {
-    // Build wonderful things
+  /**
+  * On Install
+  *
+  * @return void
+  */
+  public function onInstall()
+  {
+    Package::syncPackageFolder(get_class());
+  }
 }
