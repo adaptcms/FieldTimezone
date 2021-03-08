@@ -38,4 +38,22 @@ class FieldTimezone extends FieldType
 
     return $meta;
   }
+
+  /**
+  * With Settings Form Meta
+  *
+  * @param Request $request
+  * @param object  $model
+  * @param string  $columnName
+  *
+  * @return array
+  */
+  public function withSettingsFormMeta(Request $request, $model, string $columnName)
+  {
+    $meta = [
+      'timezones' => $this->getTimezones()
+    ];
+
+    return $meta;
+  }
 }
