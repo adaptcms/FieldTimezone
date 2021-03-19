@@ -24,7 +24,7 @@ import SelectField from '@/Adaptcms/Base/ui/components/Form/SelectField'
 
 export default {
   props: [
-    'value',
+    'modelValue',
     'field',
     'errors',
     'formMeta',
@@ -32,20 +32,24 @@ export default {
     'action'
   ],
 
+  emits: [
+    'update:modelValue'
+  ],
+
   components: {
     SelectField
   },
 
   watch: {
-    value (newVal, oldVal) {
-      if (newVal !== oldVal) {
+    modelValue (newVal, oldVal) {
+      if (newVal && newVal !== oldVal) {
         this.selected = newVal
       }
     },
 
     selected (newVal, oldVal) {
       if (newVal !== oldVal) {
-        this.$emit('input', newVal)
+        this.$emit('update:modelValue', newVal)
       }
     }
   },
@@ -63,8 +67,8 @@ export default {
   },
 
   mounted () {
-    if (this.value) {
-      this.selected = this.value
+    if (this.modelValue) {
+      this.selected = this.modelValue
     }
   }
 }
